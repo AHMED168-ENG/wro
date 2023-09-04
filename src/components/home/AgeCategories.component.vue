@@ -198,6 +198,7 @@
           class="g-recaptcha"
           data-sitekey="6LcDofonAAAAAJQWgOI_LrGiyy7gwZl-1HJ8rgDJ"
         ></div>
+        <form action="" class="formCapetcha"></form>
         <button @click="supmit">سجل الان</button>
         <!-- <a target="_blank" href="https://saudi.wro-v.com/web/sign-In"
           >سجل الان</a
@@ -248,8 +249,11 @@ import axios from "axios";
 export default {
   name: "AgeCategoriesComponent",
   methods: {
-    supmit() {
-      const capetcha = document.querySelector("g-recaptcha-response");
+    supmit(e) {
+      e.preventDefault();
+      const newForm = new FormData(document.querySelector(".formCapetcha"));
+
+      const capetcha = newForm.get("g-recaptcha-response");
       console.log(capetcha);
       if (!capetcha) {
         return { success: false, msg: "please select captcha" };
