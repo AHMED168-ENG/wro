@@ -7,6 +7,7 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import App from "./App.vue";
+
 library.add(fas, fab, far);
 dom.watch();
 window.axios = axios;

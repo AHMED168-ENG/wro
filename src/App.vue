@@ -8,12 +8,13 @@
   </div>
 </template>
 
-<script>
+<script type="module">
 import NavbarComponent from "@/components/layouts/Navbare.component.vue";
 import LandingPageComponent from "@/components/home/LandingPage.vue";
 import OlympiadComponent from "@/components/home/Olympiad.component.vue";
 import AgeCategoriesComponent from "@/components/home/AgeCategories.component.vue";
 import VideoComponent from "@/components/home/Video.component.vue";
+
 export default {
   name: "App",
   components: {
