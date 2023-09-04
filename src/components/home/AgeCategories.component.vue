@@ -194,6 +194,11 @@
       </div>
       <div class="content">
         <h4>هل انت مستعد للتحدي؟</h4>
+        <form action="javascript:alert(grecaptcha.getResponse(widgetId1));">
+          <div id="example1"></div>
+          <br />
+          <input type="submit" value="getResponse" />
+        </form>
         <a target="_blank" href="https://saudi.wro-v.com/web/sign-In"
           >سجل الان</a
         >
