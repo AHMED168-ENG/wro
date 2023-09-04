@@ -194,22 +194,48 @@
       </div>
       <div class="content">
         <h4>هل انت مستعد للتحدي؟</h4>
-        <form action="javascript:alert(grecaptcha.getResponse(widgetId1));">
-          <div id="example1"></div>
-          <br />
-          <input type="submit" value="getResponse" />
-        </form>
-        <a target="_blank" href="https://saudi.wro-v.com/web/sign-In"
+        <div
+          class="g-recaptcha"
+          data-sitekey="6LcDofonAAAAAJQWgOI_LrGiyy7gwZl-1HJ8rgDJ"
+        ></div>
+        <button @click="supmit">سجل الان</button>
+        <!-- <a target="_blank" href="https://saudi.wro-v.com/web/sign-In"
           >سجل الان</a
-        >
+        > -->
       </div>
     </footer>
   </section>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "AgeCategoriesComponent",
+  methods: {
+    supmit() {
+      const capetcha = document.querySelector("g-recaptcha-response");
+      console.log(capetcha);
+      if (!capetcha) {
+        return { success: false, msg: "please select captcha" };
+      }
+      let sitKey = "6LcDofonAAAAAIOAIbdgYoV6SDk1CTT6K6F14Gal";
+      const verifyURL = `https://google.com/recaptcha/api/siteverify?secret=${sitKey}&response=${capetcha}`;
+      axios.post(verifyURL, (error, response, data) => {
+        let result = JSON.parse(data);
+        if (!result.success) {
+          return {
+            success: false,
+            msg: "Failed captcha verification",
+          };
+        }
+
+        return {
+          success: true,
+          msg: "The message has been sent successfully",
+        };
+      });
+    },
+  },
 };
 </script>
 
@@ -462,9 +488,8 @@ export default {
         font-weight: 600;
         margin-bottom: 15px;
       }
-      a {
+      button {
         padding: 10px 15px;
-        display: block;
         background: white;
         color: #ee49b0;
         font-size: 18px;

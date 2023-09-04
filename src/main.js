@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import axios from "axios";
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -8,5 +9,5 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import App from "./App.vue";
 library.add(fas, fab, far);
 dom.watch();
-
+window.axios = axios;
 createApp(App).mount("#app");
