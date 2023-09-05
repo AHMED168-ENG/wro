@@ -81,7 +81,7 @@
                 </div>
                 <div class="element d-flex">
                   <i class="fa-solid fa-wifi"></i>
-                  <span>جهاز حاسب آلي</span>
+                  <span>إنترنت</span>
                 </div>
               </div>
             </div>
@@ -136,11 +136,11 @@
                 </li>
                 <li class="d-flex">
                   <img src="../../assets/icons/tow.png" alt="" />
-                  يتأهل <span>٥٠٪</span> من الطلاب للجولة الثانية
+                  يتأهل ٥٠٪ من الطلاب للجولة الثانية
                 </li>
                 <li class="d-flex">
                   <img src="../../assets/icons/three.png" alt="" />
-                  يتأهل أفضل <span> ١٠-١٥ </span> فريق للجولة الثالثة والأخيرة
+                  يتأهل أفضل ١٠-١٥ فريق للجولة الثالثة والأخيرة
                 </li>
               </ul>
             </div>
@@ -173,10 +173,6 @@
             النتائج – وسيقوم النظام باحتساب أفضل مجموع بين الطالبين وأفضل وقت.
           </li>
           <li>
-            يمكن للطالبين تسليم أكثر من نتيجة خلال الوقت المسموح بالنظام لتسليم
-            النتائج – وسيقوم النظام باحتساب أفضل مجموع بين الطالبين وأفضل وقت.
-          </li>
-          <li>
             ملاحظة – يقوم النظام بعدم اعتماد أي نتائج لا تحقق الشرط المطلوب
             <span> (مجموع وقت الطالبين يساوي أو اقل من ١٢٠ ثانية).</span>
           </li>
@@ -194,12 +190,14 @@
       </div>
       <div class="content">
         <h4>هل انت مستعد للتحدي؟</h4>
-        <div
-          class="g-recaptcha"
-          data-sitekey="6LcDofonAAAAAJQWgOI_LrGiyy7gwZl-1HJ8rgDJ"
-        ></div>
-        <form action="" class="formCapetcha"></form>
-        <button @click="supmit">سجل الان</button>
+
+        <form class="submitCapetcha">
+          <div
+            class="g-recaptcha"
+            data-sitekey="6LcDofonAAAAAJQWgOI_LrGiyy7gwZl-1HJ8rgDJ"
+          ></div>
+          <button class="" @click="supmit">سجل الان</button>
+        </form>
         <!-- <a target="_blank" href="https://saudi.wro-v.com/web/sign-In"
           >سجل الان</a
         > -->
@@ -209,7 +207,6 @@
 </template>
 
 <script>
-import axios from "axios";
 /* PLEASE DO NOT COPY AND PASTE THIS CODE. */ (function () {
   var w = window,
     C = "___grecaptcha_cfg",
@@ -251,29 +248,12 @@ export default {
   methods: {
     supmit(e) {
       e.preventDefault();
-      const newForm = new FormData(document.querySelector(".formCapetcha"));
-
-      const capetcha = newForm.get("g-recaptcha-response");
-      console.log(capetcha);
+      const capetcha = document.getElementById("g-recaptcha-response").value;
       if (!capetcha) {
-        return { success: false, msg: "please select captcha" };
+        return alert("من فضبك قم بالاختبار");
       }
-      let sitKey = "6LcDofonAAAAAIOAIbdgYoV6SDk1CTT6K6F14Gal";
-      const verifyURL = `https://google.com/recaptcha/api/siteverify?secret=${sitKey}&response=${capetcha}`;
-      axios.post(verifyURL, (error, response, data) => {
-        let result = JSON.parse(data);
-        if (!result.success) {
-          return {
-            success: false,
-            msg: "Failed captcha verification",
-          };
-        }
 
-        return {
-          success: true,
-          msg: "The message has been sent successfully",
-        };
-      });
+      window.location.href = "https://saudi.wro-v.com/web/sign-In";
     },
   },
 };
